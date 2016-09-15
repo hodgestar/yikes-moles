@@ -13,6 +13,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'pygame-cffi',
+        'autobahn',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -21,7 +22,7 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Topic :: Games/Entertainment',
     ],
 )
