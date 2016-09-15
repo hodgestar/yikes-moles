@@ -9,6 +9,7 @@ import pygame.locals as pgl
 
 from .constants import FPS
 from .events import QuitEvent, SceneChangeEvent
+from .wamp import WampMoles
 
 
 class Engine(object):
@@ -25,6 +26,9 @@ class Engine(object):
             self._scene.enter(self._gamestate)
 
     def run(self):
+        wamp = WampMoles()
+        wamp.start()
+
         clock = pygame.time.Clock()
 
         while True:
@@ -32,11 +36,13 @@ class Engine(object):
             for ev in events:
                 if QuitEvent.matches(ev) or ev.type == pgl.QUIT:
                     self.set_scene(None)
-                    return
+                    break
                 elif SceneChangeEvent.matches(ev):
                     self.set_scene(ev.scene)
                 else:
                     self._scene.event(ev, self._gamestate)
+            if self._scene is None:
+                break
 
             # Advance time on the world
             # Time is assumed to flow perfectly, so no dt parameter for now
@@ -45,3 +51,5 @@ class Engine(object):
 
             pygame.display.flip()
             clock.tick(FPS)
+
+        wamp.join()
