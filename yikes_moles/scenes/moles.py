@@ -33,10 +33,10 @@ class MolesScene(BaseScene):
         self._holes = []
         margin = 100
         holes = gamestate.holes()
-        diameter = (SCREEN_SIZE[0] - 2 * margin) / len(holes)
+        diameter = (SCREEN_SIZE[0] - 2 * margin) // len(holes)
         radius = int(diameter / 2.5)
         for i in holes:
-            pos = (margin + diameter / 2 + i * diameter, 350)
+            pos = (margin + diameter // 2 + i * diameter, 350)
             self._holes.append((i, Hole(pos, radius)))
 
     def event(self, ev, gamestate):
