@@ -14,6 +14,7 @@ setup(
     install_requires=[
         'pygame-cffi',
         'autobahn',
+        'hyperloglog',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
